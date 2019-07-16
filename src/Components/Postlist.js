@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link} from 'react-router-dom'
+import { Link} from 'react-router-dom';
 
 const Postlist = ({ posts }) => {
   return (
@@ -13,7 +13,7 @@ const Postlist = ({ posts }) => {
   )
 };
 
-const generatePosts = (posts) => {
+function generatePosts(posts) {
   return posts.map(post => (
     <Link
       key={post.id}
@@ -22,7 +22,7 @@ const generatePosts = (posts) => {
       <li>{post.name}</li>
     </Link>
   ))
-};
+}
 
 const mapState = (state) => {
   return {

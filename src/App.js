@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route, Link } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import Postlist from './Components/Postlist'
@@ -12,6 +12,7 @@ class App extends React.Component {
   async componentDidMount() {
     const { setPosts } = this.props;
     const posts = await loadPosts();
+    posts.length = 40;
     setPosts(posts);
   }
 
