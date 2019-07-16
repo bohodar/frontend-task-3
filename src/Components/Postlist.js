@@ -17,10 +17,7 @@ const generatePosts = (posts) => {
   return posts.map(post => (
     <Link
       key={post.id}
-      to={{
-        pathname: `/posts/post:${post.id}`,
-        postId: post.id,
-      }}
+      to={`/posts/post:${post.id}`}
     >
       <li>{post.name}</li>
     </Link>

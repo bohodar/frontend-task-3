@@ -20,7 +20,7 @@ class App extends React.Component {
       <div className="PostApp">
         <Switch>
           <Route exact path="/" component={Postlist}/>
-          <Route path="/posts/post:postId/" component={PostPage} />
+          <Route path="/posts/post:postId/" component={PostPage}/>
         </Switch>
       </div>
     );
