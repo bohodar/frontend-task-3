@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import Postlist from './Components/Postlist'
 import { PostPage } from './Components/PostPage'
-import { loadPosts } from './ApiHelper/loadPosts'
+import { loadPosts } from './helpers/loadPosts'
 import { setPosts } from './Redux/Reducers/postsReducer'
 import { Wrapper, GlobalStyle } from "./AppStyles";
 

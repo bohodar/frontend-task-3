@@ -8,11 +8,12 @@ export const setPosts = (posts) => {
   }
 };
 
-export const addComment = (text, postID) => {
+export const addComment = (text, postID, time) => {
   return {
     type: ADD_COMMENT,
     text: text,
-    id: postID
+    id: postID,
+    time: time
   }
 };
 
@@ -27,10 +28,14 @@ export const setPostsReducer = (state = [], action) => {
 
         if (post.id === action.id) {
           const { comments = [] } = post;
+          const newComment = {
+            body: action.text,
+            time: action.time
+          };
 
           return {
             ...post,
-            comments: [...comments, action.text]
+            comments: [...comments, newComment]
           }
         }
         return post;

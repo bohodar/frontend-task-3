@@ -2,6 +2,8 @@ import styled, {createGlobalStyle} from 'styled-components';
 
 export const GlobalStyle  = createGlobalStyle`
   body {
+    font-family: sans-serif;
+  
     margin: -20px 0;
     background-color: #c4c4c4;
     display: flex;
@@ -118,6 +120,40 @@ export const BackButton = styled.button`
 export const PostWrap = styled.div`
   input {
     height: 2em;
-    width: 90%;
+    width: 100%;
   }
+  
+  q {
+    display: inline-block;
+    margin: 0 0 20px;
+    padding-left: 12px;
+    font-size: 1.1em;
+    font-weight: 100;
+  }
+`;
+
+export const CommentWrap = styled.p`
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  
+  margin: 12px 30px;
+  padding: 16px 12px;
+  
+  background-color: #d4d4d9;
+  border-radius: 8px;
+  
+  b {
+    font-size: .8em;
+  }
+`;
+export const Time = styled.code`
+  display: inline-block;
+  
+  position: absolute;
+  right: 10px;
+  bottom: 4px;
+  font-size: 11px;
+  
+  color: rgba(0, 0, 0, .7)
 `;

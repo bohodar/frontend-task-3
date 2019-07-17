@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
-import {connect} from "react-redux";
+import { connect } from "react-redux";
 import { addComment } from '../Redux/Reducers/postsReducer'
-import { PostWrap } from "../AppStyles";
+import { PostWrap, CommentWrap, Time } from "../AppStyles";
+import getTime from '../helpers/getTime'
+
+const randomStr = require('randomstring');
 
 function Post({ posts, id, addComment}) {
   const [userText, changeUserText] = useState('');
@@ -11,11 +14,17 @@ function Post({ posts, id, addComment}) {
   }
   function onSubmit(e) {
     e.preventDefault();
-    addComment(userText, id);
+    addComment(userText, id, getTime());
     changeUserText('');
   }
   function generateComments(comments){
-    return comments.map(item => (<p>{item}</p>))
+    return comments.map(item => (
+      <CommentWrap key={randomStr.generate(3)}>
+        <b>Comment from <i>Your Name</i>: </b>
+        <code>{item.body}</code>
+        <Time>{item.time}</Time>
+      </CommentWrap>
+    ))
   }
 
   return posts.map(post => {
@@ -23,7 +32,7 @@ function Post({ posts, id, addComment}) {
     return (
       <PostWrap key={post.id}>
         <h3>{post.email}</h3>
-        <p>{post.body}</p>
+        <q>{post.body}</q>
         {post.comments ?
           generateComments(post.comments) :
           null
