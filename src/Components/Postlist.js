@@ -1,28 +1,29 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link} from 'react-router-dom';
+import { ListOuterWrapper, PostsWrapper, ListItemWrapper } from '../AppStyles'
 
 const Postlist = ({ posts }) => {
   return (
-    <div>
-      <h3>Postspage</h3>
+    <ListOuterWrapper>
+      <h2>Postspage</h2>
       {posts.length > 0 ?
-        <ul>{generatePosts(posts)}</ul> :
+        <PostsWrapper>{generatePosts(posts)}</PostsWrapper> :
         <div>Loading posts ...</div>}
-    </div>
+    </ListOuterWrapper>
   )
 };
 
-function generatePosts(posts) {
+const generatePosts = (posts) => {
   return posts.map(post => (
-    <Link
-      key={post.id}
-      to={`/posts/post:${post.id}`}
-    >
-      <li>{post.name}</li>
-    </Link>
+    <ListItemWrapper key={post.id}>
+      <Link to={`/posts/post:${post.id}`}>
+          <b>{post.email}</b><br/>
+          <code>{post.name}</code>
+      </Link>
+    </ListItemWrapper>
   ))
-}
+};
 
 const mapState = (state) => {
   return {

@@ -8,7 +8,7 @@ import App from './App';
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
+    <BrowserRouter basename="/frontend-task-3">
       <App />
     </BrowserRouter>
   </Provider>,

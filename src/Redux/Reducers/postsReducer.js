@@ -8,8 +8,7 @@ export const setPosts = (posts) => {
   }
 };
 
-export const addCommentToPost = (text, postID) => {
-  console.log('init comms');
+export default function addComment(text, postID) {
   return {
     type: ADD_COMMENT,
     text: text,
@@ -24,7 +23,6 @@ export const setPostsReducer = (state = [], action) => {
       return action.posts;
 
     case ADD_COMMENT:
-      console.log('adding comms');
       const copy = [...state];
       copy.map(post => {
 

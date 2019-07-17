@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import {connect} from "react-redux";
-import { addCommentToPost } from '../Redux/Reducers/postsReducer'
+import addComment from '../Redux/Reducers/postsReducer'
+import { PostWrap } from "../AppStyles";
 
 function Post({ posts, id}) {
   const [userText, changeUserText] = useState('');
@@ -10,19 +11,18 @@ function Post({ posts, id}) {
   }
   function onSubmit(e) {
     e.preventDefault();
-    console.log(addCommentToPost(userText, id));
-    addCommentToPost(userText, id);
+    addComment(userText, id);
     changeUserText('');
   }
   function generateComments(comments){
     return comments.map(item => (<p>{item}</p>))
   }
-  console.log('render post');
+
   return posts.map(post => {
     if (post.id !== id) return null;
     return (
-      <div key={post.id}>
-        <h3>{post.name}</h3>
+      <PostWrap key={post.id}>
+        <h3>{post.email}</h3>
         <p>{post.body}</p>
         {post['comments'] ?
           generateComments(post.comments) :
@@ -35,7 +35,7 @@ function Post({ posts, id}) {
             onChange={handleInput}
           />
         </form>
-      </div>
+      </PostWrap>
     )
   })
 }
@@ -46,6 +46,6 @@ const mapState = (state) => {
   }
 };
 
-const mapDispatch = { addCommentToPost };
+const mapDispatch = { addComment };
 
 export default connect(mapState, mapDispatch)(Post);

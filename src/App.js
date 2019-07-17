@@ -6,7 +6,7 @@ import Postlist from './Components/Postlist'
 import { PostPage } from './Components/PostPage'
 import { loadPosts } from './ApiHelper/loadPosts'
 import { setPosts } from './Redux/Reducers/postsReducer'
-import './AppStyles';
+import { Wrapper, GlobalStyle } from "./AppStyles";
 
 class App extends React.Component {
   async componentDidMount() {
@@ -18,12 +18,15 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="PostApp">
-        <Switch>
-          <Route exact path="/" component={Postlist}/>
-          <Route path="/posts/post:postId/" component={PostPage}/>
-        </Switch>
-      </div>
+      <React.Fragment>
+        <GlobalStyle/>
+          <Wrapper>
+            <Switch>
+              <Route exact path="/" component={Postlist}/>
+              <Route path="/posts/post:postId/" component={PostPage}/>
+            </Switch>
+          </Wrapper>
+      </React.Fragment>
     );
   }
 }
