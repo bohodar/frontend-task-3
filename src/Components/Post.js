@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import {connect} from "react-redux";
-import addComment from '../Redux/Reducers/postsReducer'
+import { addComment } from '../Redux/Reducers/postsReducer'
 import { PostWrap } from "../AppStyles";
 
-function Post({ posts, id}) {
+function Post({ posts, id, addComment}) {
   const [userText, changeUserText] = useState('');
 
   function handleInput(e){
@@ -24,7 +24,7 @@ function Post({ posts, id}) {
       <PostWrap key={post.id}>
         <h3>{post.email}</h3>
         <p>{post.body}</p>
-        {post['comments'] ?
+        {post.comments ?
           generateComments(post.comments) :
           null
         }

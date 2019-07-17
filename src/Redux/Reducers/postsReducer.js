@@ -8,7 +8,7 @@ export const setPosts = (posts) => {
   }
 };
 
-export default function addComment(text, postID) {
+export const addComment = (text, postID) => {
   return {
     type: ADD_COMMENT,
     text: text,
@@ -17,34 +17,24 @@ export default function addComment(text, postID) {
 };
 
 export const setPostsReducer = (state = [], action) => {
-  console.log(action.type);
   switch (action.type) {
     case SET_POSTS:
       return action.posts;
 
     case ADD_COMMENT:
       const copy = [...state];
-      copy.map(post => {
+      return copy.map(post => {
 
         if (post.id === action.id) {
-          const copyPost = {...post};
+          const { comments = [] } = post;
 
-          if (copyPost['comments']) {
-            const copyCommets = [...copyPost.comments].push(action.text);
-            return {
-              ...copyPost,
-              comments: copyCommets
-            }
-          } else {
-            return {
-              ...copyPost,
-              comments: [action.text]
-            }
+          return {
+            ...post,
+            comments: [...comments, action.text]
           }
         }
         return post;
       });
-      return copy;
 
     default:
       return state;
